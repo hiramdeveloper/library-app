@@ -45,7 +45,7 @@ app.config(function($stateProvider, $urlRouterProvider){
 });
 
 app.run(function($rootScope,DTDefaultOptions,DTOptionsBuilder,$localStorage,$window,$location,$http,$timeout){
-	$rootScope.apiURL = 'http://localhost/library/api-library/public/';
+	$rootScope.apiURL = 'http://localhost/library-app/api-library/public/';
 
   $rootScope.dataTableOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers').withDOM('frtip')
     .withOption('responsive', true).withDisplayLength(10)
