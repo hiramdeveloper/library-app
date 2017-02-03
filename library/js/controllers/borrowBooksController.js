@@ -136,11 +136,11 @@
         //Books for lend
         $scope.saveLendBook = function(){
             if($scope.arrLendBooks.length == 0){
-                alert('Need select a one book!');
+                alert('Need select one book!');
                 return false;
             }
             if($scope.book.CatCustomerId == undefined||$scope.book.CatCustomerId == null){
-                alert('Need select a one customer!');
+                alert('Need select one customer!');
                 return false;
             }
             if(angular.element('#BeginDate').val() == ''||angular.element('#BeginDate').val() == undefined){
@@ -226,6 +226,100 @@
             })
             .error(function(data){
                 alert('Something has wrong, try again!');
+            });
+        };
+        //-----------------------------------------------------------------------------------------//
+
+        //-----------------------------------------------------------------------------------------//
+        //Get detail books by customer
+        $scope.openDetailPDF = function(CatCustomerId){
+            console.log(CatCustomerId);
+            $scope.arrData = [];
+            $scope.arrData.push([
+                {text:'BOOK',style:'TitleTableHeader'},
+                {text:'AUTHOR',style:'TitleTableHeader'},
+                {text:'CATEGORY',style:'TitleTableHeader'},
+                {text:'PUBLISH DATE',style:'TitleTableHeader'},
+                {text:'BEGIN DATE',style:'TitleTableHeader'},
+                {text:'END DATE',style:'TitleTableHeader'}
+            ]);
+            $http({
+                method: 'GET',
+                url: $rootScope.apiURL+'getDetailBorrowBooksByCustomer/'+$localStorage.token+'/'+CatCustomerId,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(response){
+                if(response.Result === 'SUCCESS'){
+                    console.log(response);
+
+                    for(var i in response.data){
+                        $scope.arrData.push([
+                            {text:response.data[i].Book,style:'textNormal'},
+                            {text:response.data[i].Author,style:'textNormal'},
+                            {text:response.data[i].Category,style:'textNormal'},
+                            {text:response.data[i].PublishDate,style:'textNormal'},
+                            {text:response.data[i].BeginDate,style:'textNormal'},
+                            {text:response.data[i].EndDate,style:'textNormal'}
+                        ]);
+                    }
+
+                    var docDefinition = {
+                        content: [
+                            {
+                                columns: [
+                                    {
+                                        width: 200,
+                                        image: $rootScope.imgLogo,width: 170,height: 110, margin: [0, -15],
+                                    },
+                                    {
+                                        width: 380,
+                                        text: ['\nData of the borrowed books\n',{text:'Customer: '+response.data[0].Customer,style:'titleHeaderNameCustomer'}], style: 'titleHeaderDoc',
+                                    },
+                                ]
+                            },
+                            {text:'\n'},
+                            {
+                                style: 'tableExample',
+                                table: {
+                                    widths: [ 100, 70, 70, 70, 70, 70 ],
+                                    body: $scope.arrData,
+                                },
+                                layout: 'lightHorizontalLines'
+                            },
+                        ],
+                        styles: {
+                          demoTable: {
+                            color: '#000',
+                            fontSize: 8
+                          },
+                          titleHeaderDoc: {
+                            bold: true,
+                            color: '#000',
+                            fontSize: 18,
+                            alignment: 'center'
+                          },
+                          titleHeaderNameCustomer: {
+                            bold: true,
+                            color: '#000',
+                            fontSize: 14,
+                            alignment: 'center'
+                          },
+                          TitleTableHeader: {
+                            bold: true,
+                            color: '#000',
+                            fontSize: 12
+                          },
+                          textNormal: {
+                            color: '#000',
+                            fontSize: 10,
+                            alignment: 'justify',
+                          },
+                        }
+                    };
+                    pdfMake.createPdf(docDefinition).open();
+                }
+            })
+            .error(function(data){
+                alert('Error al intentar obtener los datos del servidor');
             });
         };
         //-----------------------------------------------------------------------------------------//

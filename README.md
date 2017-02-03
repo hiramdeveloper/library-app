@@ -23,7 +23,8 @@ Change parameters with your configuration
 
 ]
 
+Create a new database called: library and import the library.sql file
+
 
 In the browser write the next url:
-
 Example: http://localhost/library-app/library/#/

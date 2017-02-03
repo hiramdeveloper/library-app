@@ -84,6 +84,20 @@ class CModelOperations
 	  	$result = ['result'=>$querySel->fetchAll(),'row'=>$params['RelBorrowCustomerBookId']];
 	  	return $result;	
 	}
+
+	static public function ApiGetDetailBorrowBooksByCustomer($db,$customerId){
+		$querySel = $db->prepare("SELECT rbc.*, ccr.Name AS Customer, cbt.Name AS Book, ccy.Name AS Category, sss.Name AS Status, cbt.Author, cbt.PublishDate
+								  FROM RelBorrowCustomerBook AS rbc
+								  JOIN CatCustomer AS ccr ON rbc.CatCustomerId = ccr.CatCustomerId
+								  JOIN CatBooks AS cbt ON rbc.CatBooksId = cbt.CatBooksId
+							 	  JOIN CatCategory AS ccy ON cbt.CatCategoryId = ccy.CatCategoryId
+								  JOIN SysStatus AS sss ON rbc.SysStatusId = sss.SysStatusId
+								  WHERE rbc.SysStatusId = 3 AND rbc.CatCustomerId = :CatCustomerId");
+		$querySel->bindParam(":CatCustomerId",$customerId);
+	  	$querySel->execute();
+	  	$result = $querySel->fetchAll();
+	  	return $result;
+	}
 	//RelBorrowCustomerBook
 
 }

@@ -3,11 +3,11 @@
     
     $scope.fnLogin = function(){
       if ($scope.username==undefined) {
-        alert('El campo de Usuario no puede ser vacio');
+        alert('The username field cant empty');
         return false;
       }
       if ($scope.password==undefined) {
-        alert('El campo de Usuario no puede ser vacio');
+        alert('The password field cant empty');
         return false;
       }
 
@@ -29,12 +29,12 @@
               $location.url('dashboard/home');
             } else {
               $localStorage.token = null;
-              alert('Usuario/Contraseña incorrectos');
+              alert('Username/Password are incorrect');
             }
           
       })
       .error(function(data){
-          alert('Error al intentar hacer Login!');
+          alert('Error, cant to conect to with app!');
       });
     };
     

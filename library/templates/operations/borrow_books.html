@@ -1,6 +1,6 @@
 <div ng-controller="BorrowBooksController">
     <section class="content-header">
-      <button class="btn btn-app" ng-click="openModalLendBook()"><i class="fa fa-plus" aria-hidden="true"></i> Lend Book</button>
+      <button class="btn btn-app" ng-click="openModalLendBook()"><i class="fa fa-plus" aria-hidden="true"></i> Add Borrow</button>
       <h1>
         Borrow Books
         <small>it all starts here</small>
@@ -42,7 +42,7 @@
                             <td>{{ p.Status }}</td>
                             <td>
                                 <a class="btn btn-primary btn-xs" ng-if="p.Status == 'BORROWED'" ng-click="openModalEditStatusLendBook(p.RelBorrowCustomerBookId,p.CatBooksId)"><i class="fa fa-edit"></i> Edit</a>
-                                <!--a class="btn btn-info btn-xs" ng-click="openModalDetailLendBook(p.RelBorrowCustomerBookId)"><i class="fa fa-edit"></i> Detail</a-->
+                                <a class="btn btn-info btn-xs" ng-click="openDetailPDF(p.CatCustomerId)"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Detail</a>
                             </td>
                         </tr>
                     </tbody>

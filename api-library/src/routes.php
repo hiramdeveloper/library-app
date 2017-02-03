@@ -267,6 +267,29 @@ $app->post('/updateStatusBorrowBook',function ($request, $response){
   }
   return $response->withJson($arrResponse);
 });
+
+/*
+ * getDetailBorrowBooksByCustomer
+ */
+//Method for see details books by user
+$app->get('/getDetailBorrowBooksByCustomer/{token}/{customerId}',function ($request, $response, $args){
+  $token = filter_var($args['token'],FILTER_SANITIZE_STRING);
+  $customerId = filter_var($args['customerId'],FILTER_SANITIZE_STRING);
+  if($token!=null){
+    $isTokenExist = CModelUsers::chkToken($this->db,$token);
+    if(count($isTokenExist)===1){
+      
+      $data = CModelOperations::ApiGetDetailBorrowBooksByCustomer($this->db,$customerId);
+
+      $arrResponse = ['Result'=>'SUCCESS','data'=>$data];
+    } else {
+      $arrResponse = ['Result'=>'ERROR_INVALID_TOKEN'];
+    }
+  } else {
+    $arrResponse = ['Result'=>'ERROR_NULL_TOKEN'];
+  }
+  return $response->withJson($arrResponse);
+});
 /*----------------------------------------------------BORROW BOOKS----------------------------------------------------*/
 /*----------------------------------------------------BORROW BOOKS----------------------------------------------------*/
 /*----------------------------------------------------BORROW BOOKS----------------------------------------------------*/
