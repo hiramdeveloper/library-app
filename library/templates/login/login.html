@@ -1,0 +1,31 @@
+<div class="login-box" ng-controller="LoginController">
+  <div class="login-logo">
+    <!--a href="../../index2.html"><b>Llainco</b> Admin</a-->
+    <img src="img/library.jpg" class="img-responsive">
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">LogIn</p>
+
+    <form action="../../index2.html" method="post">
+      <div class="form-group has-feedback">
+        <input type="text" ng-model="username" class="form-control" placeholder="Nickname">
+        <span class="glyphicon glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" ng-model="password" class="form-control" placeholder="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4 col-offset-8">
+          <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="fnLogin()">Login</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->

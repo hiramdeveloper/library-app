@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="closeModal()" aria-hidden="true">&times;</button>
+    <h3>Form for add/edit Books</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <form name="books">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="Name" ng-model="book.Name" class="form-control" placeholder="Book name">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" name="Author" ng-model="book.Author" class="form-control" placeholder="Author name">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select chosen class="form-control" ng-model="book.CatCategoryId" ng-options="category.CatCategoryId as category.Name for category in allCategories">
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Publish Date {{ gb_PublishDate }}</label>
+                    <input ui-date="dateOptions" id="PublishDate" name="PublishDate" class="form-control">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-if="action.create" ng-click="saveBook()">Save</button>
+    <button type="button" class="btn btn-primary" ng-if="action.edit" ng-click="updateBook()">Edit</button>
+    <button type="button" class="btn btn-danger" ng-click="closeModal()">Close</button>
+</div>

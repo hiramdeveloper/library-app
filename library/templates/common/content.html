@@ -1,0 +1,41 @@
+
+<div ng-include src="'templates/common/layout.html'"></div>
+<!-- Main view  -->
+<div class="wrapper">
+
+	<div class="content-wrapper">
+		<!--div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10"-->
+				
+			
+			<!--div class="callout callout-success" ng-if="globalAlertShow">
+	            <h4><i class="icon fa fa-check"></i> Aviso!</h4>
+
+	            <p>{{globalAlertMessage}}</p>
+	      	</div-->
+			<!--div class="alert alert-success alert-dismissible" ng-if="globalAlertShow">
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+	            {{globalAlertMessage}}
+	        </div-->
+			<!--div class="alert alert-success global-alert animate-if" ng-if="globalAlertShow">
+			    {{globalAlertMessage}}
+			</div-->
+			<!--/div>
+			<div class="col-md-1"></div>
+		</div-->
+		<!--div class="alert alert-danger global-alert animate-if" ng-if="globalAlertShowError">
+		    {{globalAlertMessageError}}
+		</div-->
+		<div class="row">
+			<div class="loading-spiner-holder" data-loading style="margin: 0 auto;"><div class="loading-spiner"><img src="img/loader.gif" /></div></div>
+		</div>
+		<div ui-view></div>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<div ng-include src="'templates/common/footerLayout.html'"></div>
+</div>
+
+
+
